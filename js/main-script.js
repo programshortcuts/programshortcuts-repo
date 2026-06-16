@@ -23,6 +23,7 @@ sideBarTopicsAs.forEach(link => {
         }
         clickedLink = true
         const anchor = e.target.closest('a');
+        console.log(anchor)
         if (!anchor) return;
         injectContent(anchor.getAttribute('href'));
         
