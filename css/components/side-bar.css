@@ -18,6 +18,8 @@
 /* ========== SIDEBAR ========== */
 .side-bar {
   /* flex-basis: var(--width-side-bar); */
+  border: 1px solid black;
+  box-shadow: 0 0 1px 0 whitesmoke;
   width: var(--width-side-bar);
   position: fixed;
   display: flex;

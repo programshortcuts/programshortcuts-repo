@@ -1,9 +1,6 @@
 .page-wrapper {
   display: flex;
 }
-
-
-
 .main-search-nav {
   display: flex;
   justify-content: flex-end;

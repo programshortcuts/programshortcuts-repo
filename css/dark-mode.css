@@ -1,20 +1,9 @@
 :root{
     --color-dark-mode: white;
 }
-body.dark-mode {
 
-background: linear-gradient(135deg,
-  #020c1b 0%,       /* Deepest night/navy */
-  #071a2f 20%,      /* Rich spacey blue */
-  #0c2b48 40%,      /* Abyss blue */
-  #153857 60%,      /* Twilight navy */
-  #2a2e43 85%,      /* Smoky dark gray-blue */
-  #3f2a45 98%,      /* 2% calm muted purple-magenta */
-  #e9d8b4 100%      /* Soft beige star-glow hint */
-);
 
     
-}
 .dark-mode h1 {
     color: var(--color-dark-mode);
 }
@@ -34,6 +23,6 @@ background: linear-gradient(135deg,
 .dark-mode .videos-container a{
     color: whitesmoke;
 }
-.dark-mode main {
-    background-color: rgb(27, 27, 29);
+.dark-mode .main-content {
+    background-color: rgb(31, 31, 29);
 }
