@@ -1,4 +1,4 @@
-import { keyboardNav } from "./nav/keyboard-nav.js";
+import { initKeyboardNav } from "../nav/keyboard-nav.js";
 
 export const mainLandingPage = document.querySelector('.main-landing-page');
 export async function injectContent(href) {
@@ -10,7 +10,7 @@ export async function injectContent(href) {
                 mainLandingPage.innerHTML = html
                 const aLinks = mainLandingPage.querySelectorAll('.page-container a')
                 openPageLinks(aLinks)
-                keyboardNav()
+                initKeyboardNav()
             })
     }
 }

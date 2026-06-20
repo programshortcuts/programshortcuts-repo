@@ -1,11 +1,16 @@
 // import { sideBarTopicsAs,sideBarBtn } from "./toggle-sidebar.js";
+import { mainLandingPage } from "../core/inject-content.js";
 import { sideBarBtn } from "../ui/toggle-sidebar.js";
 export const sideBarTopicsAs = document.querySelectorAll('ul.topics > li a')
-import { mainLandingPage } from "../inject-content.js";
 let letterFocusInitialized = false;
 const sideBar = document.querySelector('.side-bar')
-
-export function keyboardNav() {
+const navState = {
+    zone: null
+}
+function setNavZone({e}){
+    // if(e.target.closest)
+}
+export function initKeyboardNav() {
     let homeAside = document.getElementById('homeAside')
     let lastFocusedSideEl = null
     let focusedSideBarLinks = false
@@ -63,7 +68,6 @@ export function keyboardNav() {
     })
     document.addEventListener('keydown', e => {
         const key = e.key.toLowerCase();
-
     // rebuild letteredEls fresh on every keypress
         const letteredEls = [...document.querySelectorAll('a, [id], i[id]')].filter(el => {
         const rect = el.getBoundingClientRect();
@@ -75,14 +79,11 @@ export function keyboardNav() {
         el.id[0]?.toLowerCase() === key
         );
   });
-
   // force #sideBarBtn in for key "s"
   if(key === 's' && sideBarBtn && !letteredEls.includes(sideBarBtn)){
     letteredEls.unshift(sideBarBtn);
   }
-
   if(letteredEls.length === 0) return;
-
   // now cycle/focus
   const active = document.activeElement;
   const currentIndex = letteredEls.indexOf(active);
