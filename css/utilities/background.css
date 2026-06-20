@@ -14,3 +14,7 @@ input#searchQueryInput:active,
 input#searchQueryInput:focus{
     background-color: blue;
 }
+
+main>.main-content{
+    background-color: rgb(175, 185, 184);
+}
