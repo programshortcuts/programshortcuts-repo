@@ -1,4 +1,4 @@
-import { initKeyboardNav } from "../nav/keyboard-nav.js";
+// import { initKeyboardNav } from "../nav/keyboard-nav.js";
 import { initDropDowns } from "../ui/drop-downs.js";
 import { effectsLoops } from "../../pages/home-page/js-home/effects.js";
 
@@ -12,7 +12,7 @@ export async function injectContent(href) {
                 mainLandingPage.innerHTML = html
                 const aLinks = mainLandingPage.querySelectorAll('.page-container a')
                 openPageLinks(aLinks)
-                initKeyboardNav()
+                // initKeyboardNav()
                 initDropDowns()
                 effectsLoops()
             })
@@ -39,10 +39,26 @@ function openPageLinks(aLinks){
             if (!anchor) return;
             const href = anchor.getAttribute('href');
             if (!href) return;
-            keyboardNav()
-            // Optional: check that it's a local/internal link
             if (!href.startsWith('http')) {
                 injectContent(href);
+            } else {
+                window.open(href,'')
+            }
+        });
+        link.addEventListener('keydown', e => {
+            const key = e.key.toLowerCase()
+            if(key === 'enter'){
+                e.preventDefault()
+                const anchor = e.target.closest('a');
+                if (!anchor) return;
+                const href = anchor.getAttribute('href');
+                if (!href) return;
+                // Optional: check that it's a local/internal link
+                if (!href.startsWith('http')) {
+                    injectContent(href);
+                } else {
+                    window.open(href,'')
+                }
             }
         });
     })
