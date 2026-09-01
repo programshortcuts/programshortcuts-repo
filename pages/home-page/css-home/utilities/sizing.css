@@ -1,0 +1,28 @@
+/* sizing.css */
+.page-header h2 {
+    font-size: 90%;
+}
+.main-container {
+    width: 100vw;
+}
+button.drop-down {
+    font-size: 1.5rem;
+    width: 100%;
+    height: 5vh;
+}
+button.drop-down > span.topic-title{
+    display: block;
+    width: 100%;   
+    height: inherit;
+}
+.topic-title {
+    font-size: 1.4rem ;
+}
+.topic#youtubeResources >.topics-container .topic {
+    max-width: 400px;
+
+}
+.project>img {
+    max-height: 100px;
+    max-width: 200px;
+}

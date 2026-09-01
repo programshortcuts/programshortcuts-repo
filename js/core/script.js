@@ -4,9 +4,13 @@ import { injectContent } from "./inject-content.js";
 import { initKeyboardNav } from "../nav/keyboard-nav.js";
 import { darkMode } from "../dark-mode.js";
 import { dragHideSideBar } from "../ui/drag-hide-sidebar.js";
+import { effectsLoops } from "../../pages/home-page/js-home/effects.js";
+// import { initDropDowns } from "../ui/drop-downs.js";
 let clickedLink = false
 let lastPageClicked
 function initMain(){
+    // initDropDowns()
+    effectsLoops()
     document.addEventListener("DOMContentLoaded", () => {
         darkMode()
         initKeyboardNav()

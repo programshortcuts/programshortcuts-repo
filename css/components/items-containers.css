@@ -6,7 +6,6 @@
 }
 .items-container > .item{
     display: inline-flex;
-    border: 2px solid blue;
     flex-direction: column;
     text-decoration: none;
 }

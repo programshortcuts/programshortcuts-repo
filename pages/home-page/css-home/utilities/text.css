@@ -1,0 +1,29 @@
+/* text.css */
+header {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#homeH1 {
+    text-decoration: none;
+}
+.project a,
+.topic a {
+    text-decoration: none;
+}
+header>.topics-container {
+    font-size: 60%;
+}
+.topics-container > a {
+    font-size: 70%;
+    text-decoration: none;
+}
+.topics-container > .topic{
+    font-size: 1.2rem;
+}
+.projects-container  > .project > .project-title{
+    font-size: 1.2rem;
+}
+.projects-container > .project > .project-title#codeCmdShrtTitle{
+    
+    font-size: 1.1rem;
+
+}

@@ -13,3 +13,7 @@ main > .main-content > header {
     height: 10vh;
 }
 
+
+.items-container>.item {
+    height: 25vh;
+}

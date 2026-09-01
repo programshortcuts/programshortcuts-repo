@@ -1,3 +1,10 @@
+/* main.css */
+@import url('../pages/home-page/css-home/main-home.css');
+
+/* UI */
+@import url('ui/drop-downs.css');
+@import url('ui/stepVid.css');
+
 /* Components */
 @import url('components/drag-hide.css');
 @import url('components/side-bar.css');

@@ -1,0 +1,13 @@
+/* display.css */
+button.drop-topic > span.topic-title{
+    display: block;   
+}
+.project  {
+    display: inline-flex;
+}
+.project >img {
+    display: inline-flex;   
+}
+.hide {
+    display: none !important;
+}

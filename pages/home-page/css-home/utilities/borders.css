@@ -1,0 +1,25 @@
+/* borders.css */
+.topics-container>.project {
+    border: 1px solid black;
+}
+.drop-sub-topic {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+#jsYoutube{border: 2px solid darkkhaki !important;}
+#dockerYoutube{border: 2px solid darkslateblue !important;}
+#freecodecampYoutube{border: 2px solid green !important;}
+#nodeJsYoutube { border: 2px solid royalblue !important;}
+.dark-mode #nodeJsYoutube { border: 2px solid royalblue !important;}
+#pythonYoutube {border: 2px solid mediumpurple !important;}
+
+#aiYoutube{
+    border: 1px solid orangered;
+}
+.project {
+    border-radius: 4px;
+}
+.project img {
+    /* border: 3px solid magenta; */
+}

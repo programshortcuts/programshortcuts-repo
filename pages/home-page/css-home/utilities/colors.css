@@ -1,0 +1,15 @@
+/* colors.css */
+.r{color: tomato;}
+body {
+    background-color: whitesmoke;
+}
+button.drop-down {
+    background-color: inherit;
+    /* color: white; */
+}
+#newMadonnaSite > img{
+    background-color: whitesmoke;
+}
+.madonna-stie img{
+    background-color: #ddd !important;
+}

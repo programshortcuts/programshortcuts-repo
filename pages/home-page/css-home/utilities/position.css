@@ -1,0 +1,18 @@
+/* position.css */
+.btn-container {
+    position: absolute;
+    z-index: 2;
+    bottom: 10%;
+    left: 0;
+}
+.projects-container>.project {
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 10vw;
+}
+.project>.project-title {
+    /* position: absolute; */
+    top: 0;
+}

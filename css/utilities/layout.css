@@ -1,6 +1,11 @@
 .page-wrapper {
   display: flex;
 }
+.main-landing-page{
+  overflow: hidden;
+  overflow-y: scroll;
+}
+main
 .main-search-nav {
   display: flex;
   justify-content: flex-end;
@@ -9,8 +14,6 @@
   display: flex;
 }
 .items-container > .item {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
-  height: 25vh;
 }

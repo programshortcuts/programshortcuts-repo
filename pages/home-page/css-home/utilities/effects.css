@@ -1,0 +1,125 @@
+/* effects.css */
+:root {
+    --x: 1px;
+    --xB: 2px;
+    --yB: 2px;
+}
+button.drop-down:active,
+button.drop-down:focus{
+    color: whitesmoke;
+}
+#aiYoutube:focus,
+#aiYoutube:active {
+    box-shadow: var(--x) 0 var(--xB) var(--yB) orangered !important;
+    background-color: rgb(255, 69, 0,.4) !important;
+}
+#cssYoutube{
+    box-shadow: var(--x) 0 var(--xB) var(--yB) rgb(78, 74, 106) !important;
+    border: 2px solid rgb(143, 141, 159) !important;
+}
+#cssYoutube:focus,
+#cssYoutube:active {
+    background-color: rgb(143, 141, 159) !important;
+}
+#dockerYoutube:focus,
+#dockerYoutube:active {
+    box-shadow: var(--x) 0 var(--xB) var(--yB) darkslateblue !important;
+    border: 2px solid darkslateblue !important;
+    background-color: rgb(72, 61, 139) !important;
+}
+#freecodecampYoutube:focus,
+#freecodecampYoutube:active {
+    box-shadow: var(--x) 0 var(--xB) var(--yB) green !important;
+    border: 2px solid green !important;
+    background-color: rgb(31, 81, 31) !important;
+}
+
+#nodeJsYoutube:focus,
+#nodeJsYoutube:active {
+    box-shadow: var(--x) 0 var(--xB) var(--yB) royalblue !important;
+    border: 2px solid royalblue !important;
+    background-color: rgb(32, 55, 122);
+}
+#pythonYoutube:focus,
+#pythonYoutube:active {
+    background-color: rgb(147, 112, 216, .4) !important;
+    border: 10px;
+    font-size: 1.3rem;
+}
+#pythonYoutube:hover{
+    box-shadow: var(--x) 0 var(--xB) var(--yB) mediumpurple !important;
+}
+#reactJsYoutube{
+    box-shadow: var(--x) 0 var(--xB) var(--yB) rgb(78, 74, 106) !important;
+    border: 2px solid rgb(92, 107, 153) !important;
+}
+#reactJsYoutube:focus,
+#reactJsYoutube:active {
+    box-shadow: var(--x) 0 var(--xB) var(--yB) royalblue !important;
+    border: 2px solid royalblue !important;
+    background-color: rgb(92, 107, 153);
+}
+#jsYoutube:focus,
+#jsYoutube:active{
+    box-shadow: var(--x) 0 var(--xB) var(--yB) yellow !important;
+    background-color: rgb(255, 255, 0, .3) !important;
+    border: 10px;
+    opacity: 100 !important;
+}
+#jsYoutube:hover {box-shadow: var(--x) 0 var(--xB) var(--yB) yellow !important;}
+
+.topic {
+    /* transition: background-color 0.25s linear, opacity 0.25s linear; */
+}
+.topic-title:focus,
+.topic-title:active {
+    color: whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 2px !important;
+    margin-left: 2px !important;
+        padding-top: 1% !important;
+        padding-left: 1% !important;
+        margin-left:1% !important;
+        margin-bottom:1% !important;
+    transition: all .2s;   
+}
+
+#effect-indicator {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    padding: 8px 14px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 14px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+#efxChangeBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 14px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 14px;
+    border-radius: 8px;
+    /* opacity: 0; */
+    transition: opacity 0.3s ease;
+}
+
+#arduinoYoutube{
+
+    /* box-shadow: var(--x) 0 var(--xB) var(--yB) royalblue !important; */
+    border: 2px solid royalblue ;
+    background-color: rgb(32, 55, 122);
+}
+#arduinoYoutube:focus,
+#arduinoYoutube:active {
+    box-shadow: var(--x) 0 var(--xB) var(--yB) royalblue !important;
+    border: 2px solid royalblue !important;
+    background-color: rgb(32, 55, 122) !important;
+}

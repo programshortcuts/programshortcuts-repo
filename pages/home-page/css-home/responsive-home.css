@@ -1,0 +1,18 @@
+/* responsive.css */
+
+
+@media screen and (max-width: 854px) {
+    .project-title {
+        font-size: .9rem !important;
+    }
+    .project>img {
+        /* max-height: 150px !important; */
+        /* max-width: 120px !important; */
+    }
+}
+@media screen and (max-width: 654px) {
+    .project>img {
+        max-height: 50px !important;
+        max-width: 70px !important;
+    }
+}

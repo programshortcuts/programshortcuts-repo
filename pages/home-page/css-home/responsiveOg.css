@@ -1,0 +1,62 @@
+/* responsive.css */
+/* @media screen and (min-width: 860px){ */
+@media screen and (max-width: 1221px){
+    
+    .project img{
+        max-height: 50px !important;
+        max-width: 50px !important;
+
+    }
+    .topics-container >  .project > img {
+        min-height: 100px;
+    }
+    .topics-container > .topic{
+        font-size: 1.6rem !important ;
+    }
+    #youtubeResources>.topics-container .topic {
+        font-size: 1.1rem !important ;
+        height: 10vh ;   
+        width:  20vw ;
+        flex-basis: 30%;
+    }
+    
+}
+@media screen and (min-width:1220px){
+    .projects-container>.project {
+        flex-basis: 15vw !important;
+    }
+
+    .projects-container > .project > .project-title#codeCmdShrtTitle{
+        font-size: 1rem;
+    }
+    .project > img {
+        max-height: 30px;
+        max-width: 50px;
+        min-height: 30px;
+        min-width: 100px;
+    }
+}
+@media screen and (max-width: 854px) {
+    .main-container {
+        padding-top: 20% !important;
+    }
+    .projects-container {
+        padding-top: 5%;
+    }
+    
+    .project-title {
+        font-size: 0.8rem !important;/* adjust to taste */
+    }
+    #projectsSection  > .projects-container > 
+    .project {
+        margin: 1%;
+    }
+    #projectsSection  > .projects-container > 
+    .project > img {
+        max-height: 30px !important;
+        max-width:  100px !important;
+        min-width:  5px !important;
+        /* min-height: 30px !important; */
+    }
+    
+}
