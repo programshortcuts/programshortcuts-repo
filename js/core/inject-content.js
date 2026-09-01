@@ -1,7 +1,8 @@
 import { initKeyboardNav } from "../nav/keyboard-nav.js";
+import { initDropDowns } from "../ui/drop-downs.js";
+import { effectsLoops } from "../../pages/home-page/js-home/effects.js";
 
 export const mainLandingPage = document.querySelector('.main-landing-page');
-import { initDropDowns } from "../ui/drop-downs.js";
 export async function injectContent(href) {
     if(href){
         fetch(href)
@@ -13,6 +14,7 @@ export async function injectContent(href) {
                 openPageLinks(aLinks)
                 initKeyboardNav()
                 initDropDowns()
+                effectsLoops()
             })
     }
 }
