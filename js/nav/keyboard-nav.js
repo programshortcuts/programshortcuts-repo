@@ -6,10 +6,14 @@ export const sideBarTopicsAs = document.querySelectorAll('ul.topics > li a')
 let letterFocusInitialized = false;
 const sideBar = document.querySelector('.side-bar')
 const navState = {
-    zone: null
+    zone: null,
+    letterNav: false
 }
-function setNavZone({e}){
+function setNavZone({ e }) {
     // if(e.target.closest)
+}
+function intiMain() {
+
 }
 export function initKeyboardNav() {
     const allAs = document.querySelectorAll('a')
@@ -29,49 +33,49 @@ export function initKeyboardNav() {
         }
     }
     allAs.forEach(a => {
-        if(a.hasAttribute('target')){
+        if (a.hasAttribute('target')) {
             a.addEventListener('click', e => {
                 console.log(a)
                 console.log(e.target)
                 console.log(a.href)
-                window.open(a.href,'_blank')    
+                window.open(a.href, '_blank')
             })
-        }        
+        }
     })
     sideBarTopicsAs.forEach(el => {
-        if(el.hasAttribute('autofocus')){
+        if (el.hasAttribute('autofocus')) {
             lastFocusedSideEl = el
         }
-        
-        el.addEventListener('focus',e => {
+
+        el.addEventListener('focus', e => {
             focusedSideBarLinks = true
             lastFocusedSideEl = e.target
         })
-        el.addEventListener('focusout',()=>{
+        el.addEventListener('focusout', () => {
             focusedSideBarLinks = false
         })
 
     })
     if (letterFocusInitialized) return; // ✅ prevent double-binding
     letterFocusInitialized = true;
-    
+
     sideBarTopicsAs.forEach(el => {
         el.addEventListener('focus', e => {
-            scrollTo(0,0)
+            scrollTo(0, 0)
         })
         el.addEventListener('click', e => {
             const aLinks = mainLandingPage.querySelectorAll('.page-container a')
-            aLinks.forEach(el => {            
-                if(el.hasAttribute('autofocus')){
+            aLinks.forEach(el => {
+                if (el.hasAttribute('autofocus')) {
                     el.removeAttribute('autofocus')
                 }
             })
         })
     })
     document.addEventListener('keydown', e => {
-        
+
         // rebuild letteredEls fresh on every keypress
-        letterNav({e})
+        letterNav({ e })
     });
 
 }

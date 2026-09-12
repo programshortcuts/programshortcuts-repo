@@ -1,19 +1,22 @@
 .page-wrapper {
   display: flex;
 }
-.main-landing-page{
-  overflow: hidden;
+
+.main-landing-page {
+  /* overflow: hidden; */
   overflow-y: scroll;
 }
-main
-.main-search-nav {
+
+main .main-search-nav {
   display: flex;
   justify-content: flex-end;
 }
-.items-container{
+
+.items-container {
   display: flex;
 }
-.items-container > .item {
+
+.items-container>.item {
   display: flex;
   flex-direction: column;
 }
