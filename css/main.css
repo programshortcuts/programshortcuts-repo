@@ -2,8 +2,9 @@
 @import url('../pages/home-page/css-home/main-home.css');
 
 /* UI */
+@import url('dark-mode.css');
 @import url('ui/drop-downs.css');
-@import url('ui/stepVid.css');
+@import url('ui/toggle-side-bar.css');
 
 /* Components */
 @import url('components/drag-hide.css');
@@ -13,13 +14,13 @@
 /* Utities */
 @import url('utilities/layout.css');
 @import url('utilities/colors.css');
-@import url('utilities/sizing.css');
-@import url('utilities/position.css');
+/* @import url('utilities/sizing.css'); */
+/* @import url('utilities/position.css'); */
 @import url('utilities/spacing.css');
 @import url('utilities/background.css');
 
-@import url('responsive.css');
-@import url('dark-mode.css');
+/* @import url('responsive.css'); */
+
 
 :root {
     --bg-color-prime: linear-gradient(to bottom, #0e162b, #192752, #26376c, #34478a);

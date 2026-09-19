@@ -1,4 +1,5 @@
-
+export const sideBarBtn = document.querySelector('#sideBarBtn')
+import { handleSidebar } from "../ui/toggle-sidebar.js";
 import { sideBarTopicsAs } from "../nav/keyboard-nav.js";
 import { injectContent } from "./inject-content.js";
 import { initKeyboardNav } from "../nav/keyboard-nav.js";
@@ -7,15 +8,15 @@ import { dragHideSideBar } from "../ui/drag-hide-sidebar.js";
 
 let clickedLink = false
 let lastPageClicked
-function initMain(){
-    
+function initMain() {
+
     document.addEventListener("DOMContentLoaded", () => {
         darkMode()
         initKeyboardNav()
         dragHideSideBar()
+        initGlobalListener()
     })
 }
-initMain()
 sideBarTopicsAs.forEach(link => {
     if (link.hasAttribute('autofocus')) {
         injectContent(link.href)
@@ -53,3 +54,25 @@ sideBarTopicsAs.forEach(link => {
         lastPageClicked = e.target
     });
 });
+function initGlobalListener() {
+    sideBarBtn.addEventListener('click', e => {
+        const sidebar = e.target.closest('.side-bar')
+        if (!sidebar) return
+        e.stopPropagation()
+        handleSidebar(sidebar)
+    })
+    sideBarBtn.addEventListener('keydown', e => {
+        const key = e.key.toLowerCase()
+        const sidebar = e.target.closest('.side-bar')
+        if (!sidebar) return
+        if (key === 'enter') {
+
+            e.stopPropagation()
+            handleSidebar(sidebar)
+        }
+    })
+    document.addEventListener('click', e => {
+
+    })
+}
+initMain()

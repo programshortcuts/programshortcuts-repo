@@ -1,4 +1,8 @@
 /* layout.css */
+.page-container {
+    overflow-y: scroll;
+}
+
 .main-container>.topics-container {
     display: flex;
     flex-wrap: wrap;

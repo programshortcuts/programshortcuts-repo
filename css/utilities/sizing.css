@@ -1,18 +1,21 @@
-h1 {
-    font-size: 150%;
-}
-.page-wrapper > .main-content {
-  /* width: auto; */
-  width: 100vw;
-  height: 100vh;
-  width: var(--width-main-content);  
-  
-}
-main > .main-content > header {
-    width: 100% ;
-    height: 10vh;
+:root {
+    --width-side-bar: 10vw;
+    --width-main-content: 90vw;
 }
 
+.page-wrapper>aside.side-bar {
+    width: var(--width-side-bar);
+    height: 100vh;
+}
+
+.page-wrapper>.main-content {
+    height: 100vh;
+}
+
+main>.main-content>header {
+    width: 100%;
+    height: 10vh;
+}
 
 .items-container>.item {
     height: 25vh;

@@ -1,0 +1,28 @@
+:root {
+    --width-side-active: 25vw;
+    --width-side-hide: 5vw;
+}
+
+.side-bar.active+.main-content {}
+
+.side-bar.active {
+    /* width: var(--width-side-active); */
+}
+
+.side-bar.hide {
+    width: var(--width-side-hide);
+}
+
+.side-bar.hide ul li {
+    display: none;
+}
+
+
+
+.side-bar.active .side-bar-ul-container ul>li>ul {
+    display: inline-block;
+    color: rgb(69, 146, 99);
+    font-family: 'Trebuchet MS', sans-serif;
+    line-height: 1.5;
+    margin-left: 5%;
+}

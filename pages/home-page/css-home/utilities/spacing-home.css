@@ -5,10 +5,12 @@ body {
 
 .page-container {
     padding-bottom: 50%;
+    margin-bottom: 50%;
 }
 
 .main-container {
     padding-top: 5%;
+    margin-bottom: 25%;
 }
 
 .main-container>.topics-container>.topic {
