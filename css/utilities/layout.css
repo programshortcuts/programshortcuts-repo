@@ -7,6 +7,10 @@
   overflow-y: scroll;
 }
 
+.page-container {
+  overflow-y: scroll;
+}
+
 main .main-search-nav {
   display: flex;
   justify-content: flex-end;

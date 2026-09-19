@@ -5,16 +5,7 @@ import { sideBarBtn } from "../ui/toggle-sidebar.js";
 export const sideBarTopicsAs = document.querySelectorAll('ul.topics > li a')
 let letterFocusInitialized = false;
 const sideBar = document.querySelector('.side-bar')
-const navState = {
-    zone: null,
-    letterNav: false
-}
-function setNavZone({ e }) {
-    // if(e.target.closest)
-}
-function intiMain() {
 
-}
 export function initKeyboardNav() {
     const allAs = document.querySelectorAll('a')
     let homeAside = document.getElementById('homeAside')
