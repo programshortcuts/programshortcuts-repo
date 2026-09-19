@@ -1,15 +1,16 @@
-
+/* Dragging uses the shared collapsed rail; never translate its controls
+   outside the viewport. Keep sidebar and main-content motion in sync. */
 .side-bar {
-  transition: transform 0.3s ease;
-  transform: translateX(0);
+    transition: width 0.3s ease;
 }
 
-.side-bar.hidden {
-  transform: translateX(-100%) !important;
-  opacity: 0;
+body > .page-wrapper > .main-content {
+    transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-.side-bar.hidden ~ .main-content{
-    flex-basis: 100% !important;
-    width: 100% !important;
+@media (prefers-reduced-motion: reduce) {
+    .side-bar,
+    body > .page-wrapper > .main-content {
+        transition: none;
+    }
 }

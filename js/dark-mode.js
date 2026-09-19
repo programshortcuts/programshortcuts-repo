@@ -1,19 +1,14 @@
+let darkModeInitialized = false;
 
-export function darkMode(){
-
-
-
-  addEventListener('keydown', e => {
-    let key = e.key.toLowerCase();
-    if (key === 'k' && e.shiftKey && e.metaKey) {
-      const body = document.querySelector('body');
-      const pageContainer = document.querySelector('.page-container');
-      const mainShorcutPageContainer = document.getElementById('mainShorcutPageContainer');
-
-      mainShorcutPageContainer?.classList.toggle('dark-mode');
-      body.classList.toggle('dark-mode');
-      pageContainer?.classList.toggle('dark-mode');
-    } else {
-    }
-  });
+export function darkMode() {
+    if (darkModeInitialized) return;
+    darkModeInitialized = true;
+    document.addEventListener('keydown', event => {
+        if (event.key.toLowerCase() !== 'k' || !event.shiftKey || !event.metaKey) return;
+        event.preventDefault();
+        const enabled = document.body.classList.toggle('dark-mode');
+        document.querySelectorAll('.page-container').forEach(page => {
+            page.classList.toggle('dark-mode', enabled);
+        });
+    });
 }

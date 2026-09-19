@@ -1,20 +1,15 @@
-
-main > .main-content > header {
+body > .page-wrapper > .main-content > header {
     background-image: url('../../img/program-shortcut-banner.jpg');
-    background-position-y:20%;
+    background-position-y: 20%;
     background-size: 100%;
     background-repeat: no-repeat;
-    
-}
-.side-bar {
-   background-color: rgb(31, 31, 29);
 }
 
 input#searchQueryInput:active,
-input#searchQueryInput:focus{
+input#searchQueryInput:focus {
     background-color: blue;
 }
 
-main>.main-content{
+body > .page-wrapper > .main-content {
     background-color: rgb(175, 185, 184);
 }

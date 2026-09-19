@@ -1,3 +1,38 @@
+:root {
+    /* Change the expanded sidebar width here. */
+    --side-bar-width: 9rem;
+    --side-bar-collapsed-width: 2.5rem;
+}
+
+body {
+    margin: 0;
+}
+
 .page-wrapper {
-  display: flex;
+    display: flex;
+}
+
+/* The homepage also has a .page-wrapper: only the outer shell owns the
+   viewport and sidebar offset. Content spacing must not move the sidebar. */
+body > .page-wrapper {
+    --side-bar-current-width: var(--side-bar-width);
+    margin: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+body > .page-wrapper:has(> .side-bar:is(.hide, .hidden)) {
+    --side-bar-current-width: var(--side-bar-collapsed-width);
+}
+
+body > .page-wrapper > .main-content {
+    margin-left: var(--side-bar-current-width);
+    width: calc(100% - var(--side-bar-current-width));
+    min-width: 0;
+    height: 100%;
+    overflow: auto;
+    /* Preserve the original top/right page breathing room inside the shell. */
+    padding-top: 1vw;
+    padding-right: 1vw;
 }

@@ -4,6 +4,9 @@
     --clr-titles: whitesmoke;
 }
 
+.page-container.dark-mode .page-header>.disclaimer-txt {
+    color: white !important;
+}
 
 .dark-mode {
     background-color: var(--bg-primary);

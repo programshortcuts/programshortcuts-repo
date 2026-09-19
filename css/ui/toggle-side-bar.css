@@ -1,28 +1,35 @@
-:root {
-    /* --width-side-active: 25vw; */
-    --width-side-hide: 5vw;
-}
-
-.side-bar.active+.main-content {}
-
-.side-bar.active {
-    /* width: var(--width-side-active); */
-}
-
-.side-bar.hide {
-    width: var(--width-side-hide);
-}
-
-.side-bar.hide ul li {
+/* Both the button (.hide) and drag gesture (.hidden) collapse to the same
+   visible rail. The shell derives its matching width in utilities/layout.css. */
+.side-bar:is(.hide, .hidden) > header,
+.side-bar:is(.hide, .hidden) .nav-item,
+.side-bar:is(.hide, .hidden) .sub-topic {
     display: none;
 }
 
+.side-bar:is(.hide, .hidden) .side-bar-ul-container {
+    margin-top: auto;
+}
 
+.side-bar:is(.hide, .hidden) .topics {
+    gap: 3px;
+}
 
-.side-bar.active .side-bar-ul-container ul>li>ul {
-    display: inline-block;
-    color: rgb(69, 146, 99);
-    font-family: 'Trebuchet MS', sans-serif;
-    line-height: 1.5;
-    margin-left: 5%;
+.side-bar:is(.hide, .hidden) .topics > li > a {
+    align-items: center;
+    justify-content: center;
+    min-height: 26px;
+}
+
+.side-bar:is(.hide, .hidden) .topics > li > a > img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.side-bar:is(.hide, .hidden) .bx {
+    font-size: 16px;
+}
+
+.side-bar:is(.hide, .hidden) #sideBarBtn {
+    margin-top: 0.375rem;
 }

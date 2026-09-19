@@ -1,30 +1,24 @@
-export function dragHideSideBar(){
-    const sidebar = document.querySelector('.side-bar');
+import { sideBar, setSidebarHidden } from './toggle-sidebar.js';
 
-    let startX = 0;
-    let endX = 0;
+let dragInitialized = false;
 
-    document.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    });
-
-    document.addEventListener('touchend', (e) => {
-    endX = e.changedTouches[0].clientX;
-    const swipeDistance = endX - startX;
-
-    if (swipeDistance < -50 && !sidebar.classList.contains('hidden')) {
-        //  if(sideBar.classList.contains('active')){
-        //    sidebar.classList.toggle('active')
-        //   }
-        sidebar.classList.toggle('hidden');
-    }
-
-    // Swipe right from left edge: show sidebar if hidden
-    // if (swipeDistance > 150 && startX < 50 && sidebar.classList.contains('hidden')) {
-    //   if(sideBar.classList.contains('active')){
-    //     sidebar.classList.remove('active')
-    //   }
-    //   sidebar.classList.remove('hidden');
-    // }
-    });
+export function dragHideSideBar() {
+    if (!sideBar || dragInitialized) return;
+    dragInitialized = true;
+    let start;
+    sideBar.addEventListener('touchstart', event => {
+        const touch = event.touches.length === 1 ? event.touches[0] : null;
+        start = touch ? { x: touch.clientX, y: touch.clientY } : null;
+    }, { passive: true });
+    sideBar.addEventListener('touchend', event => {
+        if (!start) return;
+        const touch = event.changedTouches[0];
+        const distanceX = touch.clientX - start.x;
+        const distanceY = touch.clientY - start.y;
+        start = null;
+        if (distanceX < -50 && Math.abs(distanceX) > Math.abs(distanceY)) {
+            setSidebarHidden(sideBar, true);
+        }
+    }, { passive: true });
+    sideBar.addEventListener('touchcancel', () => { start = null; }, { passive: true });
 }

@@ -1,3 +1,5 @@
-.hide {
+/* Visibility belongs to dropdown panels, not every element named .hide. */
+.sub-topic.hide,
+.downs.hide {
     display: none;
 }

@@ -1,70 +1,25 @@
-export const sideBarBtn = document.querySelector('#sideBarBtn')
-export const sideBar = document.querySelector('.side-bar')
-const sideBarUlContainer = document.querySelector('.side-bar-ul-container')
-const subTopicsUls = document.querySelectorAll('ul.topics > li > ul.sub-topic')
-export const sideBarTopicsAs = document.querySelectorAll('ul.topics > li a')
+export const sideBarBtn = document.querySelector('#sideBarBtn');
+export const sideBar = document.querySelector('.side-bar');
+export const sideBarTopicsAs = document.querySelectorAll('ul.topics > li a');
 
-let iItemIndex = 0
-export function hideSubTopicsUls() {
-    subTopicsUls.forEach(el => {
-        // console.log(el)
-        el.classList.add('hide')
-    })
+export function setSidebarHidden(sidebar, hidden) {
+    if (!sidebar) return;
+    // Older swipe handling used .hidden to move the whole sidebar offscreen.
+    sidebar.classList.remove('hidden');
+    sidebar.classList.toggle('hide', hidden);
+    sideBarBtn?.setAttribute('aria-expanded', String(!hidden));
+    sideBarBtn?.setAttribute('aria-label', hidden ? 'Expand sidebar' : 'Collapse sidebar');
 }
+
 export function handleSidebar(sidebar) {
-    console.log(sidebar)
-    sidebar.classList.toggle('hide')
+    if (!sidebar) return;
+    setSidebarHidden(sidebar, !(sidebar.classList.contains('hide') || sidebar.classList.contains('hidden')));
 }
-// export function toggleActive() {
-//     if (sideBar.classList.contains('hide')) {
-//         sideBar.classList.remove('hide')
-//         sideBar.classList.add('active')
-//     } else {
-//         sideBar.classList.toggle('active')
-//     }
-// }
-// if (sideBarBtn && sideBar) {
-//     [sideBar].forEach(el => {
-//         el.addEventListener('click', e => {
-//             e.preventDefault()
-//             e.stopPropagation()
-//             if (e.currentTarget.classList.contains('side-bar')) {
-//                 toggleActive()
 
-//                 return
-//             }
-//             toggleSideBar()
-//         })
-//     })
-//     sideBarBtn.addEventListener('click', e => {
-//         e.preventDefault()
-//         e.stopPropagation()
-//         hideSubTopicsUls()
-//         toggleSideBar()
-//     })
-//     sideBarBtn.addEventListener('keydown', e => {
-//         let letter = e.key.toLowerCase()
-//         if (letter == 'enter') {
-//             hideSubTopicsUls()
-//             toggleSideBar()
-
-//         }
-//     })
-// }
-
-// export function toggleSubTopicUl(parent) {
-//     const subTopicUl = parent.querySelector('li ul ')
-//     subTopicUl.classList.toggle('hide')
-
-// }
-// export function showSubTopicUls() {
-//     subTopicsUls.forEach(el => {
-//         if (el.classList.contains('hide')) { el.classList.remove('hide') }
-//     })
-// }
-// export function toggleSubTopicUls() {
-//     subTopicsUls.forEach(el => {
-//         el.classList.toggle('hide')
-//     })
-// }
-// hideSubTopicsUls()
+export function hideSubTopicsUls() {
+    sideBar?.querySelectorAll('ul.topics > li > ul.sub-topic').forEach(submenu => {
+        submenu.classList.add('hide');
+        submenu.classList.remove('show');
+        submenu.parentElement.querySelector(':scope > a')?.setAttribute('aria-expanded', 'false');
+    });
+}

@@ -1,6 +1,4 @@
-.main-landing-page {}
-
+/* Shared injected-page spacing; do not apply margins to the viewport shell. */
 .page-container {
     padding-bottom: 50%;
-    margin-bottom: 50%;
 }

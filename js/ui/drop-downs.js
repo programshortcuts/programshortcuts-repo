@@ -1,45 +1,30 @@
-// drop-downs.js
-export function initDropDowns(){
-    const dropDowns = document.querySelectorAll('.drop-down')
-    
-    hideAllDowns()
-    dropDowns.forEach(el => {
-        el.addEventListener('click', (e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            console.log('click')
-            const dropParent = e.target.closest('.drop-parent')
-            const downs  = dropParent.querySelector('.downs')
-            toggleDowns(downs)
-        });
-        el.addEventListener('keydown', (e) => {
-            const key = e.key.toLowerCase()
-            if(key === 'enter'){
-                e.preventDefault()
-                const dropParent = e.target.closest('.drop-parent')
-                const downs  = dropParent.querySelector('.downs')
-                toggleDowns(downs)
+const initializedDropdowns = new WeakSet();
 
-            }
+export function initDropDowns(root = document) {
+    root.querySelectorAll('.drop-down').forEach(control => {
+        if (initializedDropdowns.has(control)) return;
+        const downs = control.closest('.drop-parent')?.querySelector(':scope > .downs');
+        if (!downs) return;
+        initializedDropdowns.add(control);
+
+        const setOpen = open => {
+            downs.classList.toggle('hide', !open);
+            downs.classList.toggle('show', open);
+            control.setAttribute('aria-expanded', String(open));
+        };
+        setOpen(downs.classList.contains('show'));
+        control.addEventListener('click', event => {
+            event.preventDefault();
+            setOpen(downs.classList.contains('hide'));
         });
-    })
-}
-function toggleDowns(downs){
-    console.log(downs)
-    if(downs.classList.contains('hide')){
-        downs.classList.remove('show')
-    }
-    downs.classList.toggle('hide')
-    
-}
-function hideAllDowns(){
-    const downs = document.querySelectorAll('.downs')
-    downs.forEach(el => {
-        if(!el.classList.contains('show')){
-            el.classList.add('hide')
-        } else {
-            el.classList.remove('show')
+        // Buttons already emit click for Enter and Space; avoid toggling twice.
+        if (control.tagName !== 'BUTTON') {
+            control.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setOpen(downs.classList.contains('hide'));
+                }
+            });
         }
-        
-    })
+    });
 }

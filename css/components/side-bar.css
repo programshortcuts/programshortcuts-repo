@@ -1,55 +1,131 @@
-.side-bar .side-bar-ul-container ul>li>a {
-  display: flex;
-  text-decoration: none;
-  flex-direction: column;
-}
-
-.side-bar .side-bar-ul-container ul>li>ul {
-  margin-left: 4%;
-}
-
-
-.side-bar .side-bar-ul-container ul>li img,
-.side-bar .side-bar-ul-container ul>li i {
-  max-width: 30px;
-}
-
-.side-bar header>img {
-  height: 70%;
-  width: 100%;
-}
-
-
-
-
 .side-bar {
-  border: 1px solid black;
-  box-shadow: 0 0 1px 0 whitesmoke;
-  display: flex;
-  flex-direction: column;
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--side-bar-current-width, var(--side-bar-width));
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgb(31, 31, 29);
+    border: 1px solid black;
+    border-right-color: whitesmoke;
+    box-shadow: 0 0 1px 0 whitesmoke;
+    z-index: 10;
 }
 
-.side-bar-ul-container>ul {
-  /* margin-left: 10%; */
-  /* gap: 2rem; */
-  display: flex;
-  flex-direction: column;
+.side-bar > header {
+    flex-shrink: 0;
 }
 
-.side-bar-ul-container>ul li {
-  list-style-type: none;
+.side-bar header > img {
+    width: 100%;
+    height: auto;
 }
 
+.side-bar-ul-container {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
+.side-bar-ul-container > ul {
+    display: flex;
+    flex-direction: column;
+}
 
+.side-bar-ul-container li {
+    list-style: none;
+}
 
-/* Sidebar link icons and text */
+.side-bar .side-bar-ul-container a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    color: rgb(69, 160, 210);
+}
 
+.side-bar .sub-topic {
+    margin-left: 4%;
+    color: white;
+}
 
-/* ========== MAIN-CONTENT WHEN SIDEBAR IS HIDDEN ========== */
-/* ========== SIDEBAR ========== */
+.side-bar .nav-item,
+.side-bar .side-bar-ul-container img,
+.side-bar .bx {
+    color: white;
+}
+
+.side-bar .side-bar-ul-container img {
+    max-width: 30px;
+}
+
+#sideBarBtn {
+    position: relative;
+    z-index: 20;
+    display: block;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    margin: auto auto 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Keep the existing Boxicons elements useful without a remote icon font. */
+.side-bar .bx {
+    position: relative;
+    display: inline-block;
+    width: 1.125em;
+    height: 1.125em;
+    flex-shrink: 0;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.side-bar .bx-video::before {
+    content: "";
+    position: absolute;
+    left: 0.05em;
+    top: 0.25em;
+    width: 0.7em;
+    height: 0.6em;
+    border: 1.5px solid currentColor;
+    border-radius: 2px;
+}
+
+.side-bar .bx-video::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0.3em;
+    width: 0.3em;
+    height: 0.5em;
+    background: currentColor;
+    clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+}
+
+.side-bar .bx-home::before {
+    content: "";
+    position: absolute;
+    left: 0.2em;
+    top: 0.4em;
+    width: 0.7em;
+    height: 0.6em;
+    border: 1.5px solid currentColor;
+    border-top: 0;
+}
+
+.side-bar .bx-home::after {
+    content: "";
+    position: absolute;
+    left: 0.25em;
+    top: 0.14em;
+    width: 0.6em;
+    height: 0.6em;
+    border-top: 1.5px solid currentColor;
+    border-left: 1.5px solid currentColor;
+    transform: rotate(45deg);
+}

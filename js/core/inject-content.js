@@ -1,68 +1,77 @@
-// import { initKeyboardNav } from "../nav/keyboard-nav.js";
 import { initDropDowns } from "../ui/drop-downs.js";
 import { effectsLoops } from "../../pages/home-page/js-home/effects-home.js";
 
 export const mainLandingPage = document.querySelector('.main-landing-page');
-export async function injectContent(href) {
-    if (href) {
-        fetch(href)
-            .then(response => response.text())
-            .then(html => {
-                mainLandingPage.innerHTML = ``
-                mainLandingPage.innerHTML = html
-                const aLinks = mainLandingPage.querySelectorAll('.page-container a')
-                openPageLinks(aLinks)
-                // initKeyboardNav()
-                initDropDowns()
-                effectsLoops()
-            })
+let latestRequest = 0;
+let stopPageEffects;
+let pageLinksInitialized = false;
+
+// Injected fragments use paths relative to index.html, as the existing pages do.
+export function isInternalPageLink(anchor) {
+    const href = anchor.getAttribute('href')?.trim();
+    if (!href || href.startsWith('#') || anchor.hasAttribute('download') ||
+        (anchor.target && anchor.target !== '_self')) return false;
+    try {
+        const url = new URL(href, document.baseURI);
+        return ['http:', 'https:'].includes(url.protocol) && url.origin === location.origin &&
+            !url.hash && /\.html?$/i.test(url.pathname);
+    } catch {
+        return false;
     }
 }
-function openPageLinks(aLinks) {
-    aLinks.forEach(link => {
-        if (link.hasAttribute('autofocus') && !clickedLink) {
-            const href = link.getAttribute('href');
-            // Optional: check that it's a local/internal link
-            if (!href.startsWith('http')) {
-                injectContent(href);
-            }
 
-        }
-        if (link.id === 'loadLink') {
-            injectContent(link.href)
-        }
-        link.addEventListener('focus', (e) => {
-        })
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const anchor = e.target.closest('a');
-            if (!anchor) return;
-            const href = anchor.getAttribute('href');
-            if (!href) return;
-            if (!href.startsWith('http')) {
-                injectContent(href);
-            } else {
-                window.open(href, '')
-            }
-        });
-        link.addEventListener('keydown', e => {
-            const key = e.key.toLowerCase()
-            if (key === 'enter') {
-                e.preventDefault()
-                const anchor = e.target.closest('a');
-                if (!anchor) return;
-                const href = anchor.getAttribute('href');
-                if (!href) return;
-                // Optional: check that it's a local/internal link
-                if (!href.startsWith('http')) {
-                    injectContent(href);
-                } else {
-                    window.open(href, '')
-                }
-            }
-        });
-    })
+export async function injectContent(href) {
+    if (!href || !mainLandingPage) return false;
+    let url;
+    try {
+        url = new URL(href.trim(), document.baseURI);
+    } catch (error) {
+        console.warn('Unable to load page: invalid URL.', href, error);
+        return false;
+    }
+    if (url.origin !== location.origin || !['http:', 'https:'].includes(url.protocol)) return false;
 
+    const request = ++latestRequest;
+    try {
+        const response = await fetch(url.href);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const contentType = response.headers.get('content-type');
+        if (contentType && !/^(text\/html|application\/xhtml\+xml)\b/i.test(contentType)) {
+            throw new Error('The response is not an HTML page.');
+        }
+        if (response.url && new URL(response.url).origin !== location.origin) {
+            throw new Error('The page redirected to an external site.');
+        }
+        const html = await response.text();
+        if (request !== latestRequest) return false;
+        const parsedPage = new DOMParser().parseFromString(html, 'text/html');
+        const page = parsedPage.querySelector('.page-container');
+        if (!page) throw new Error('The page is unfinished or has no .page-container.');
+
+        // Full-document fragments must not add another head, stylesheet, or script to the shell.
+        page.querySelectorAll('script, style, link').forEach(element => element.remove());
+        page.classList.toggle('dark-mode', document.body.classList.contains('dark-mode'));
+        stopPageEffects?.();
+        mainLandingPage.replaceChildren(page);
+        openPageLinks();
+        initDropDowns(mainLandingPage);
+        stopPageEffects = effectsLoops(mainLandingPage);
+        return true;
+    } catch (error) {
+        console.warn(`Unable to load ${url.pathname}; keeping the current page.`, error);
+        return false;
+    }
 }
 
-
+function openPageLinks() {
+    if (pageLinksInitialized) return;
+    pageLinksInitialized = true;
+    mainLandingPage.addEventListener('click', event => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
+            event.ctrlKey || event.shiftKey || event.altKey) return;
+        const anchor = event.target.closest('a');
+        if (!anchor || !mainLandingPage.contains(anchor) || !isInternalPageLink(anchor)) return;
+        event.preventDefault();
+        injectContent(anchor.href);
+    });
+}

@@ -8,11 +8,13 @@ let i = 0;
 // let speed = 400;
 let j = 0;
 let direction = 1; // 1 = up, -1 = down
+let resumeTimeout;
 function forceResume() {
     isPaused = false;
 
     // optional: re-pause shortly after if still focused/hovered
-    setTimeout(() => {
+    clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(() => {
         const active = document.activeElement;
         const isStillInside = active?.closest('#youtubeResources');
 
@@ -21,8 +23,16 @@ function forceResume() {
         }
     }, 500); // adjust timing to taste
 }
-export function effectsLoops(){
-    const youtubeProjects = document.querySelectorAll('#youtubeResources .topic')
+export function effectsLoops(root = document){
+    const youtubeProjects = root.querySelectorAll('#youtubeResources .topic')
+    if (!youtubeProjects.length) return;
+    const controller = new AbortController();
+    const { signal } = controller;
+    const indicator = root.querySelector('#effect-indicator');
+    let frame;
+    isPaused = false;
+    i = 0;
+    j = 0;
     // efxChangeBtn.addEventListener('click', e => {
     //     if (choice < numChoices - 1) {
     //         choice++;
@@ -31,10 +41,7 @@ export function effectsLoops(){
     //     }
         
     // })
-    document.addEventListener('keydown',e => {
-        const key = e.key.toLowerCase()
-        if (e.metaKey && e.shiftKey && key === 'e') {
-            e.stopPropagation(); // 💥 stops other listeners from interfering   
+    function changeEffect() {
             if (choice < numChoices - 1) {
                 choice++;
             } else {
@@ -47,23 +54,29 @@ export function effectsLoops(){
                 '1': 'Scale'
             };
 
-            showIndicator(labels[choice]);
-            return; // 👉 exit early so nothing else runs
+            showIndicator(labels[choice], indicator);
+    }
+    document.addEventListener('keydown',e => {
+        const key = e.key.toLowerCase()
+        if (e.metaKey && e.shiftKey && key === 'e') {
+            e.preventDefault();
+            changeEffect();
         }
-    }, true); // 👈 CAPTURE PHASE (this is the key)
+    }, { signal });
+    root.querySelector('#efxChangeBtn')?.addEventListener('click', changeEffect, { signal });
     function animate() {
         frameIncrements(youtubeProjects)
-        requestAnimationFrame(animate);
+        frame = requestAnimationFrame(animate);
     }
     animate();
     youtubeProjects.forEach(el => {
     el.addEventListener('mouseenter', () => {
         isPaused = true;
-    });
+    }, { signal });
 
     el.addEventListener('mouseleave', () => {
-        isPaused = true;
-    });
+        isPaused = false;
+    }, { signal });
 
     el.addEventListener('focus', () => {
         isPaused = true;
@@ -72,12 +85,18 @@ export function effectsLoops(){
             el.style.backgroundColor = '';
             el.style.opacity = '';
         });
-    });
+    }, { signal });
 
     el.addEventListener('blur', () => {
         isPaused = false;
-    });
+    }, { signal });
 });
+    return () => {
+        controller.abort();
+        cancelAnimationFrame(frame);
+        clearTimeout(resumeTimeout);
+        clearTimeout(indicator?._timeout);
+    };
 }
 function frameIncrements(youtubeProjects){
     // debug
@@ -134,7 +153,6 @@ function spacingEfx(i,j,youtubeProjects){
 function transformElsEfx({i,j,youtubeProjects}){
     let sizeTransform = (1.03 / 100) * i + 1;
     let bRadius = i 
-    console.log(bRadius)
     youtubeProjects.forEach((el, index) => {
         if (index === j) {
             el.style.transform = `scale(${sizeTransform})`;
@@ -203,8 +221,8 @@ function applyEffect(el, opacity) {
         el.style.backgroundColor = `rgb(92, 107, 153, ${opacity * minOpactiy})`;
     }
 }
-function showIndicator(text) {
-    const el = document.getElementById('effect-indicator');
+function showIndicator(text, el) {
+    if (!el) return;
     el.textContent = text;
     el.style.opacity = 1;
 

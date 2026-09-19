@@ -6,24 +6,3 @@ h1 {
     color: whitesmoke !important;
     text-decoration: none;
 }
-
-.side-bar {
-    border-right: 1px solid whitesmoke;
-}
-
-.side-bar .nav-item {
-    color: white;
-}
-
-.side-bar .side-bar-ul-container ul>li>ul {
-    color: white;
-}
-
-.side-bar .side-bar-ul-container ul>li img,
-.side-bar .side-bar-ul-container ul>li i {
-    color: white;
-}
-
-.side-bar .side-bar-ul-container ul>li>a {
-    color: rgb(69, 160, 210);
-}
