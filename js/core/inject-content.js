@@ -1,10 +1,10 @@
 // import { initKeyboardNav } from "../nav/keyboard-nav.js";
 import { initDropDowns } from "../ui/drop-downs.js";
-import { effectsLoops } from "../../pages/home-page/js-home/effects.js";
+import { effectsLoops } from "../../pages/home-page/js-home/effects-home.js";
 
 export const mainLandingPage = document.querySelector('.main-landing-page');
 export async function injectContent(href) {
-    if(href){
+    if (href) {
         fetch(href)
             .then(response => response.text())
             .then(html => {
@@ -18,17 +18,17 @@ export async function injectContent(href) {
             })
     }
 }
-function openPageLinks(aLinks){
+function openPageLinks(aLinks) {
     aLinks.forEach(link => {
-        if(link.hasAttribute('autofocus') && !clickedLink){
+        if (link.hasAttribute('autofocus') && !clickedLink) {
             const href = link.getAttribute('href');
             // Optional: check that it's a local/internal link
             if (!href.startsWith('http')) {
                 injectContent(href);
-            } 
-            
+            }
+
         }
-        if(link.id === 'loadLink'){
+        if (link.id === 'loadLink') {
             injectContent(link.href)
         }
         link.addEventListener('focus', (e) => {
@@ -42,12 +42,12 @@ function openPageLinks(aLinks){
             if (!href.startsWith('http')) {
                 injectContent(href);
             } else {
-                window.open(href,'')
+                window.open(href, '')
             }
         });
         link.addEventListener('keydown', e => {
             const key = e.key.toLowerCase()
-            if(key === 'enter'){
+            if (key === 'enter') {
                 e.preventDefault()
                 const anchor = e.target.closest('a');
                 if (!anchor) return;
@@ -57,12 +57,12 @@ function openPageLinks(aLinks){
                 if (!href.startsWith('http')) {
                     injectContent(href);
                 } else {
-                    window.open(href,'')
+                    window.open(href, '')
                 }
             }
         });
     })
-    
+
 }
 
 

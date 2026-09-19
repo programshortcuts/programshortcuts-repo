@@ -1,25 +1,31 @@
-.iframe-container{
+.iframe-container {
     position: absolute;
     right: 5%
 }
-iframe {
-    
-}
-#mainShorcutPageContainer{
+
+iframe {}
+
+#mainShorcutPageContainer {
     margin: 0 2%;
 }
+
 .step-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
+
 .step {
     /* border: 2px solid salmon; */
     position: relative;
     display: flex;
 }
-.step > * {flex-basis: 45%;}
-.step > .step-txt{
+
+.step>* {
+    flex-basis: 45%;
+}
+
+.step>.step-txt {
     display: flex;
     flex-direction: column;
     padding-bottom: 5%;
@@ -31,52 +37,58 @@ iframe {
 .step-txt {
     font-size: 1.2rem;
 }
+
 .step-col {
     display: flex;
     flex-direction: column;
 }
-.step-col >.txt{
+
+.step-col>.txt {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.step > .step-txt:active,.step > .step-txt:focus{
+
+.step>.step-txt:active,
+.step>.step-txt:focus {
     /* box-shadow: 0 2px 3px 3px grey; */
-    
-    
+
+
 }
 
-.step > .step-txt header{
+.step>.step-txt header {
     font-size: 110%;
     margin-top: 2%;
     margin-left: 2%;
 }
-.step > .step-txt .txt-container{
+
+.step>.step-txt .txt-container {
     font-size: 120%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.step-img > img{
+.step-img>img {
     width: 100%;
     height: 100%;
 }
 
-.cmd{
-  color: #ffaa00;
-  font-size: 20px;
-  font-family: 'Poppins', sans-serif;
-  padding: 8px 12px;
-  /* border-radius: 8px; */
-  /* text-shadow: 0 0 10px #9a1a73; */
+.cmd {
+    color: #ffaa00;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 12px;
+    /* border-radius: 8px; */
+    /* text-shadow: 0 0 10px #9a1a73; */
 }
+
 @media screen and (max-width: 420px) {
     .step-txt {
         font-size: 80%;
     }
 
-    .cmd{
+    .cmd {
         color: #ffaa00;
         font-size: 90%;
         font-family: 'Poppins', sans-serif;

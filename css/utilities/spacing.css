@@ -1,3 +1,6 @@
-.main-landing-page {
-    padding-bottom: 150%;
+.main-landing-page {}
+
+.page-container {
+    padding-bottom: 50%;
+    margin-bottom: 50%;
 }

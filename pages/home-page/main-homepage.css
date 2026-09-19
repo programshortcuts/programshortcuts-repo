@@ -1,10 +1,8 @@
-/* main-home.css */
-/* main-home.css */
+/* main.css */
 /* @import url('dark-mode-home.css'); */
-
 @import url('responsive-home.css');
-
-/* utilities */
+/* uis */
+/* utilties */
 @import url('utilities/colors.css');
 @import url('utilities/borders.css');
 @import url('utilities/display.css');
@@ -14,3 +12,9 @@
 @import url('utilities/sizing.css');
 @import url('utilities/spacing-home.css');
 @import url('utilities/text.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
