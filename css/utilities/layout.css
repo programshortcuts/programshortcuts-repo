@@ -1,6 +1,6 @@
 :root {
     /* Change the expanded sidebar width here. */
-    --side-bar-width: 9rem;
+    --side-bar-width: 5rem;
     --side-bar-collapsed-width: 2.5rem;
 }
 
@@ -14,7 +14,7 @@ body {
 
 /* The homepage also has a .page-wrapper: only the outer shell owns the
    viewport and sidebar offset. Content spacing must not move the sidebar. */
-body > .page-wrapper {
+body>.page-wrapper {
     --side-bar-current-width: var(--side-bar-width);
     margin: 0;
     height: 100vh;
@@ -22,11 +22,11 @@ body > .page-wrapper {
     overflow: hidden;
 }
 
-body > .page-wrapper:has(> .side-bar:is(.hide, .hidden)) {
+body>.page-wrapper:has(> .side-bar:is(.hide, .hidden)) {
     --side-bar-current-width: var(--side-bar-collapsed-width);
 }
 
-body > .page-wrapper > .main-content {
+body>.page-wrapper>.main-content {
     margin-left: var(--side-bar-current-width);
     width: calc(100% - var(--side-bar-current-width));
     min-width: 0;
