@@ -220,6 +220,9 @@ function applyEffect(el, opacity) {
     if (el.id === 'reactJsYoutube') {
         el.style.backgroundColor = `rgb(92, 107, 153, ${opacity * minOpactiy})`;
     }
+    if (el.id === 'linuxYoutube') {
+        el.style.backgroundColor = `rgb(92, 107, 153, ${opacity * minOpactiy})`;
+    }
 }
 function showIndicator(text, el) {
     if (!el) return;
